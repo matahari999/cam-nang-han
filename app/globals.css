@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f6f1e4;
+  --ink: #201c14;
+  --navy: #16223e;
+  --seal: #b7292f;
+  --gold: #b08a34;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-navy: var(--navy);
+  --color-seal: var(--seal);
+  --color-gold: var(--gold);
+  --font-sans: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Con dấu công quyền — vòng tròn kép màu đỏ */
+.seal-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  border: 2px solid var(--seal);
+  outline: 2px solid var(--seal);
+  outline-offset: 2px;
+  color: var(--seal);
+  font-weight: 700;
+  line-height: 1;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Thẻ giấy */
+.paper-card {
+  background-color: color-mix(in srgb, var(--paper) 88%, white);
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent),
+    0 4px 16px color-mix(in srgb, var(--ink) 5%, transparent);
+}
