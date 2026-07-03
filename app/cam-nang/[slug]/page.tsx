@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { checklists, getSituation } from "@/lib/checklists";
 import ChecklistInteractive from "@/components/ChecklistInteractive";
 import SiteFooter from "@/components/SiteFooter";
+import AuthNav from "@/components/AuthNav";
 
 export function generateStaticParams() {
   return checklists.map((s) => ({ slug: s.slug }));
@@ -35,13 +36,14 @@ export default async function ChecklistDetailPage({
   return (
     <main>
       <div className="mx-auto max-w-2xl px-5">
-        <header className="pt-10 pb-4">
+        <header className="pt-10 pb-4 flex items-center justify-between gap-3">
           <Link
             href="/cam-nang"
             className="text-sm font-medium text-navy underline underline-offset-2"
           >
             ← Tất cả tình huống
           </Link>
+          <AuthNav />
         </header>
 
         <section className="py-6">

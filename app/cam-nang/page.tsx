@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { checklists } from "@/lib/checklists";
 import SiteFooter from "@/components/SiteFooter";
+import AuthNav from "@/components/AuthNav";
 
 export const metadata: Metadata = {
   title: "Danh sách chuẩn bị theo tình huống — Cẩm Nang Hàn",
@@ -13,13 +14,14 @@ export default function ChecklistIndexPage() {
   return (
     <main>
       <div className="mx-auto max-w-3xl px-5">
-        <header className="pt-10 pb-4">
+        <header className="pt-10 pb-4 flex items-center justify-between gap-3">
           <Link
             href="/"
             className="text-sm font-medium text-navy underline underline-offset-2"
           >
             ← Trang chủ
           </Link>
+          <AuthNav />
         </header>
 
         <section className="py-6">

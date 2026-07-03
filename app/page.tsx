@@ -1,17 +1,21 @@
 import Link from "next/link";
 import { checklists } from "@/lib/checklists";
 import SiteFooter from "@/components/SiteFooter";
+import AuthNav from "@/components/AuthNav";
 
 export default function HomePage() {
   return (
     <main>
       <div className="mx-auto max-w-3xl px-5">
-        <header className="pt-12 pb-8 flex items-center gap-3">
-          <span className="seal-mark h-11 w-11 text-xs">CNH</span>
-          <div>
-            <p className="font-bold text-navy leading-tight">Cẩm Nang Hàn</p>
-            <p className="text-xs text-ink/60 font-mono">Sổ tay cuộc sống tại Hàn Quốc</p>
+        <header className="pt-12 pb-8 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <span className="seal-mark h-11 w-11 text-xs">CNH</span>
+            <div>
+              <p className="font-bold text-navy leading-tight">Cẩm Nang Hàn</p>
+              <p className="text-xs text-ink/60 font-mono">Sổ tay cuộc sống tại Hàn Quốc</p>
+            </div>
           </div>
+          <AuthNav />
         </header>
 
         <section className="py-10">
