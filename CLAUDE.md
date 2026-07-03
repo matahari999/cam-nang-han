@@ -57,12 +57,12 @@ type Situation = {
 - [x] 실제 데이터 5개 상황, 전부 베트남어 (`lib/checklists.ts`): 병원 첫 방문, ARC 갱신, 계좌개설, 집계약, 구직서류
 - [x] footer 면책 문구(참고용·법적 자문 아님) 베트남어로 추가 (`components/SiteFooter.tsx`)
 - [x] `.env.example` (Supabase 키 자리만 미리 생성, 실제 키 없음)
-- [x] Supabase 스키마 설계 (`supabase/migrations/0001_init.sql`): profiles + checklist_progress 테이블, RLS 정책, 트리거 (실제 Supabase 프로젝트는 무료 티어 한도로 아직 미생성)
+- [x] Supabase 프로젝트 생성 및 스키마 적용: `wsvxkamvxqrtothpcety` — `supabase/migrations/0001_init.sql`(profiles + checklist_progress 테이블, RLS 정책, 트리거)을 SQL Editor에서 직접 실행 완료. 로컬 `.env.local` + Vercel(Production/Development) 환경변수에 URL·anon key 등록 완료
 - [x] Vercel 배포: https://cam-nang-han.vercel.app (matahari999s-projects, GitHub 레포 연동 완료 — master push 시 자동 배포)
 
 ## 다음 작업 우선순위
-1. Supabase 프로젝트 실제 생성(무료 티어 한도 해소 필요) 후 `supabase/migrations/0001_init.sql` 적용, 인증 연동
-2. `lib/checklists.ts` 클라이언트 useState → checklist_progress 테이블 연동(로그인 시 서버 저장)
+1. **앱 코드는 아직 Supabase를 실제로 호출하지 않음** — `lib/checklists.ts`/`ChecklistInteractive.tsx`는 여전히 클라이언트 `useState`만 사용. Supabase client 초기화(`lib/supabase.ts`) + 로그인(Auth) + `checklist_progress` 테이블 연동 작업이 남아있음
+2. Preview 환경변수는 master 외 브랜치가 생기면 그때 추가 필요 (지금은 Production/Development만 등록됨)
 3. 기능 2(사진 서류 해석) MVP 착수 — MediCerti의 문서 처리 로직 참고 가능
 4. 신사방TV 베트남어 구독자 대상 배포 전, 관공서 서류 정보의 정확성 재검증 필요 (참고용 문구는 이미 footer에 있음, 법적 자문은 아님)
 
