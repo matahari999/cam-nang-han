@@ -58,13 +58,13 @@ type Situation = {
 - [x] footer 면책 문구(참고용·법적 자문 아님) 베트남어로 추가 (`components/SiteFooter.tsx`)
 - [x] `.env.example` (Supabase 키 자리만 미리 생성, 실제 키 없음)
 - [x] Supabase 스키마 설계 (`supabase/migrations/0001_init.sql`): profiles + checklist_progress 테이블, RLS 정책, 트리거 (실제 Supabase 프로젝트는 무료 티어 한도로 아직 미생성)
+- [x] Vercel 배포: https://cam-nang-han.vercel.app (matahari999s-projects, GitHub 레포 연동 완료 — master push 시 자동 배포)
 
 ## 다음 작업 우선순위
 1. Supabase 프로젝트 실제 생성(무료 티어 한도 해소 필요) 후 `supabase/migrations/0001_init.sql` 적용, 인증 연동
 2. `lib/checklists.ts` 클라이언트 useState → checklist_progress 테이블 연동(로그인 시 서버 저장)
-3. Vercel 배포
-4. 기능 2(사진 서류 해석) MVP 착수 — MediCerti의 문서 처리 로직 참고 가능
-5. 신사방TV 베트남어 구독자 대상 배포 전, 관공서 서류 정보의 정확성 재검증 필요 (참고용 문구는 이미 footer에 있음, 법적 자문은 아님)
+3. 기능 2(사진 서류 해석) MVP 착수 — MediCerti의 문서 처리 로직 참고 가능
+4. 신사방TV 베트남어 구독자 대상 배포 전, 관공서 서류 정보의 정확성 재검증 필요 (참고용 문구는 이미 footer에 있음, 법적 자문은 아님)
 
 ## 절대 하지 말 것
 - 실제 API 키/시크릿을 코드나 커밋에 하드코딩하지 말 것 — `.env.local`만 사용
