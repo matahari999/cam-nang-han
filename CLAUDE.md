@@ -59,12 +59,16 @@ type Situation = {
 - [x] `.env.example` (Supabase 키 자리만 미리 생성, 실제 키 없음)
 - [x] Supabase 프로젝트 생성 및 스키마 적용: `wsvxkamvxqrtothpcety` — `supabase/migrations/0001_init.sql`(profiles + checklist_progress 테이블, RLS 정책, 트리거)을 SQL Editor에서 직접 실행 완료. 로컬 `.env.local` + Vercel(Production/Development) 환경변수에 URL·anon key 등록 완료
 - [x] Vercel 배포: https://cam-nang-han.vercel.app (matahari999s-projects, GitHub 레포 연동 완료 — master push 시 자동 배포)
+- [x] Supabase Auth 연동: `lib/supabase/client.ts`(브라우저), `lib/supabase/server.ts`(서버), `proxy.ts`(세션 갱신, Next 16 미들웨어 명칭). 이메일+비밀번호 회원가입/로그인, Kakao/Facebook OAuth 버튼, `app/login/page.tsx`, `app/auth/callback/route.ts`, `app/auth/signout/route.ts`, 헤더 `components/AuthNav.tsx`
+- [x] 체크리스트 서버 저장: `ChecklistInteractive.tsx`가 로그인 시 `checklist_progress` 테이블에서 불러오고 체크할 때마다 upsert, 비로그인 시 기존 로컬 `useState` 동작 유지
+- [x] 이메일 회원가입 동작 확인(Supabase signup API 정상 도달), Kakao/Facebook 버튼도 OAuth authorize 요청까지 정상 도달 확인 — 단, **Kakao/Facebook은 Supabase 대시보드에서 프로바이더 활성화 전이라 "provider is not enabled" 상태**
 
 ## 다음 작업 우선순위
-1. **앱 코드는 아직 Supabase를 실제로 호출하지 않음** — `lib/checklists.ts`/`ChecklistInteractive.tsx`는 여전히 클라이언트 `useState`만 사용. Supabase client 초기화(`lib/supabase.ts`) + 로그인(Auth) + `checklist_progress` 테이블 연동 작업이 남아있음
-2. Preview 환경변수는 master 외 브랜치가 생기면 그때 추가 필요 (지금은 Production/Development만 등록됨)
-3. 기능 2(사진 서류 해석) MVP 착수 — MediCerti의 문서 처리 로직 참고 가능
-4. 신사방TV 베트남어 구독자 대상 배포 전, 관공서 서류 정보의 정확성 재검증 필요 (참고용 문구는 이미 footer에 있음, 법적 자문은 아님)
+1. **Kakao/Facebook OAuth 프로바이더 활성화 필요** — Kakao Developers / Facebook for Developers에서 앱 생성 후 REST API 키(Kakao)·App ID/Secret(Facebook)을 Supabase 대시보드(Authentication → Providers)에 등록. Redirect URI는 두 프로바이더 모두 `https://wsvxkamvxqrtothpcety.supabase.co/auth/v1/callback`
+2. Supabase 기본 이메일 발송(built-in mailer)은 시간당 발송량이 매우 제한적 — 실사용 전 커스텀 SMTP(Resend/SendGrid 등) 연결 권장
+3. Preview 환경변수는 master 외 브랜치가 생기면 그때 추가 필요 (지금은 Production/Development만 등록됨)
+4. 기능 2(사진 서류 해석) MVP 착수 — MediCerti의 문서 처리 로직 참고 가능
+5. 신사방TV 베트남어 구독자 대상 배포 전, 관공서 서류 정보의 정확성 재검증 필요 (참고용 문구는 이미 footer에 있음, 법적 자문은 아님)
 
 ## 절대 하지 말 것
 - 실제 API 키/시크릿을 코드나 커밋에 하드코딩하지 말 것 — `.env.local`만 사용
