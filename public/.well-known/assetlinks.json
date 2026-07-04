@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.camnanghan.app",
+      "sha256_cert_fingerprints": [
+        "91:FC:29:B7:5B:FD:5C:FD:4B:86:9A:77:EA:0F:A9:73:3E:91:2D:A0:CE:EF:C0:5D:ED:2F:D3:E7:1D:29:FE:43"
+      ]
+    }
+  }
+]
