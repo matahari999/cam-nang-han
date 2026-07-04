@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function SiteFooter() {
   return (
     <footer className="mt-20 border-t" style={{ borderColor: "color-mix(in srgb, var(--ink) 12%, transparent)" }}>
@@ -6,6 +8,17 @@ export default function SiteFooter() {
           <span className="seal-mark h-6 w-6 text-[10px]">CNH</span>
           <span className="font-semibold text-navy">Cẩm Nang Hàn</span>
         </div>
+        <nav className="mb-4 flex flex-wrap gap-x-5 gap-y-1 text-xs font-medium text-navy">
+          <Link href="/cam-nang" className="underline underline-offset-2">
+            Danh sách chuẩn bị
+          </Link>
+          <Link href="/khan-cap" className="underline underline-offset-2">
+            Số khẩn cấp
+          </Link>
+          <Link href="/ung-dung" className="underline underline-offset-2">
+            Ứng dụng hữu ích
+          </Link>
+        </nav>
         <p className="text-xs leading-relaxed text-ink/60">
           Thông tin trên trang chỉ mang tính tham khảo, giúp bạn chuẩn bị tốt hơn,
           và không phải là tư vấn pháp lý chính thức. Quy định và thủ tục có thể

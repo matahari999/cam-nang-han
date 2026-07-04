@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  /* Thiết kế cố định nền sáng kiểu giấy — báo trình duyệt đừng tự đảo màu */
+  color-scheme: light;
   --paper: #f6f1e4;
   --ink: #201c14;
   --navy: #16223e;
@@ -23,6 +25,27 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Chừa chỗ cho thanh điều hướng dưới trên mobile */
+@media (max-width: 639px) {
+  body {
+    padding-bottom: calc(3.75rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Thanh điều hướng dưới (mobile) */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  background-color: color-mix(in srgb, var(--paper) 92%, white);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -2px 12px color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 /* Con dấu công quyền — vòng tròn kép màu đỏ */

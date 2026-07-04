@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { checklists } from "@/lib/checklists";
+import ChecklistBrowser from "@/components/ChecklistBrowser";
 import SiteFooter from "@/components/SiteFooter";
 import AuthNav from "@/components/AuthNav";
 
@@ -33,29 +33,12 @@ export default function ChecklistIndexPage() {
           </div>
           <p className="text-sm text-ink/70 leading-relaxed max-w-xl">
             Mỗi tình huống có một danh sách giấy tờ riêng, kèm lý do vì sao cần.
-            Chọn việc bạn sắp làm bên dưới.
+            Tìm kiếm hoặc chọn nhóm bên dưới.
           </p>
         </section>
 
-        <section className="pb-10 grid gap-3 sm:grid-cols-2">
-          {checklists.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/cam-nang/${s.slug}`}
-              className="paper-card p-5 flex flex-col gap-2 transition-transform hover:-translate-y-0.5"
-            >
-              <span className="text-3xl" aria-hidden>
-                {s.emoji}
-              </span>
-              <span className="font-bold text-ink">{s.title}</span>
-              <span className="text-sm text-ink/65 leading-relaxed">
-                {s.short}
-              </span>
-              <span className="mt-1 font-mono text-xs text-seal">
-                {s.items.length} mục cần chuẩn bị →
-              </span>
-            </Link>
-          ))}
+        <section className="pb-10">
+          <ChecklistBrowser />
         </section>
       </div>
       <SiteFooter />

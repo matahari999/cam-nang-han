@@ -37,14 +37,19 @@
 - **타이포**: Be Vietnam Pro, 굵은 weight로 헤드라인, 절대 세리프체 쓰지 않음
 
 ## 데이터 구조
-`lib/checklists.ts` 한 파일에 모든 체크리스트 데이터가 있음:
+`lib/checklists.ts` 한 파일에 모든 체크리스트 데이터가 있음 (현재 16개 상황):
 ```ts
 type Situation = {
   slug: string; title: string; short: string; emoji: string;
+  category: string; // categories 배열의 id (giay-to | y-te | tien-bac | cong-viec | doi-song)
   items: { label: string; why: string }[]; tip?: string;
 };
 ```
 새 상황 추가 시 이 배열에 객체 하나 추가하면 `/cam-nang/[slug]` 라우트가 자동 생성됨 (generateStaticParams 사용 중).
+**⚠️ 새 slug 추가 시 `public/sw.js`의 `PRECACHE_PAGES`에도 추가하고 `VERSION`을 올릴 것** (오프라인 캐싱 목록).
+**⚠️ 기존 항목의 `label` 문자열은 DB 저장 키이므로 변경 금지** (checklist_progress.checked_items가 label로 매칭됨).
+
+긴급 연락처 데이터는 `lib/emergency.ts` (`/khan-cap` 페이지), 유용한 앱 목록은 `app/ung-dung/page.tsx` 안에 인라인.
 
 ## 지금까지 완료된 것
 - [x] 프로젝트 스캐폴딩: Next.js 16 (App Router) + TypeScript + Tailwind CSS v4, 포트 3118 고정
@@ -62,6 +67,14 @@ type Situation = {
 - [x] Supabase Auth 연동: `lib/supabase/client.ts`(브라우저), `lib/supabase/server.ts`(서버), `proxy.ts`(세션 갱신, Next 16 미들웨어 명칭). 이메일+비밀번호 회원가입/로그인, Kakao/Facebook OAuth 버튼, `app/login/page.tsx`, `app/auth/callback/route.ts`, `app/auth/signout/route.ts`, 헤더 `components/AuthNav.tsx`
 - [x] 체크리스트 서버 저장: `ChecklistInteractive.tsx`가 로그인 시 `checklist_progress` 테이블에서 불러오고 체크할 때마다 upsert, 비로그인 시 기존 로컬 `useState` 동작 유지
 - [x] 이메일 회원가입 동작 확인(Supabase signup API 정상 도달), Kakao/Facebook 버튼도 OAuth authorize 요청까지 정상 도달 확인 — 단, **Kakao/Facebook은 Supabase 대시보드에서 프로바이더 활성화 전이라 "provider is not enabled" 상태**
+- [x] (2026-07-04) 체크리스트 5개 → **16개로 확장** + `category` 필드/`categories` 배열 추가 (기존 5개 label은 그대로 유지)
+- [x] (2026-07-04) 신규 페이지: `/khan-cap` (긴급 연락처, `lib/emergency.ts`, tel: 링크), `/ung-dung` (유용한 앱/사이트 모음)
+- [x] (2026-07-04) `/cam-nang` 목록에 검색(베트남어 성조 무시 매칭) + 카테고리 필터 (`components/ChecklistBrowser.tsx`)
+- [x] (2026-07-04) **PWA 완성**: `app/manifest.ts`, `public/sw.js`(체크리스트 전체+긴급페이지 프리캐시, 페이지 network-first/정적 cache-first, auth 라우트 제외), `components/PwaRegister.tsx`(프로덕션에서만 등록), `components/InstallPrompt.tsx`(Android beforeinstallprompt 버튼 + iOS 수동 안내, localStorage로 닫기 기억)
+- [x] (2026-07-04) 아이콘: 도장 모티프 PNG 세트(`public/icons/`, maskable 포함) + `apple-touch-icon.png` + `app/icon.svg` — 재생성은 `node scripts/gen-icons.mjs` (sharp devDependency)
+- [x] (2026-07-04) 모바일 하단 탭바 `components/BottomNav.tsx` (sm 미만에서만 표시, safe-area 대응, globals.css `.bottom-nav`)
+- [x] (2026-07-04) SEO/메타: `app/sitemap.ts`, `app/robots.ts`, OG 메타(metadataBase), viewport themeColor, `color-scheme: light` 선언
+- [x] (2026-07-04) 랜딩 고도화: 설치 배너, 카테고리별 그룹 목록, 긴급/앱 바로가기 카드, 푸터 내비 링크
 
 ## 다음 작업 우선순위
 1. **Kakao/Facebook OAuth 프로바이더 활성화 필요** — Kakao Developers / Facebook for Developers에서 앱 생성 후 REST API 키(Kakao)·App ID/Secret(Facebook)을 Supabase 대시보드(Authentication → Providers)에 등록. Redirect URI는 두 프로바이더 모두 `https://wsvxkamvxqrtothpcety.supabase.co/auth/v1/callback`
