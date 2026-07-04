@@ -59,8 +59,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi">
-      <body className={`${beVietnamPro.variable} ${ibmPlexMono.variable}`}>
+    <html lang="vi" suppressHydrationWarning>
+      <body
+        className={`${beVietnamPro.variable} ${ibmPlexMono.variable}`}
+        suppressHydrationWarning
+      >
         {children}
         <BottomNav />
         <PwaRegister />
