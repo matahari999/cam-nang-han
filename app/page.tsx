@@ -126,6 +126,26 @@ export default function HomePage() {
 
         <section className="py-8 grid gap-3 sm:grid-cols-2">
           <Link
+            href="/quet-giay-to"
+            className="paper-card p-5 flex items-start gap-3 transition-transform hover:-translate-y-0.5"
+            style={{
+              borderColor: "color-mix(in srgb, var(--gold) 50%, transparent)",
+            }}
+          >
+            <span className="text-3xl" aria-hidden>
+              📷
+            </span>
+            <span>
+              <span className="block font-bold text-ink">
+                Giải thích giấy tờ bằng ảnh
+              </span>
+              <span className="block text-xs text-ink/60 mt-0.5 leading-relaxed">
+                Chụp bảng lương, thư cơ quan, hóa đơn — AI giải thích từng mục
+                bằng tiếng Việt, không lưu ảnh của bạn.
+              </span>
+            </span>
+          </Link>
+          <Link
             href="/ban-do"
             className="paper-card p-5 flex items-start gap-3 transition-transform hover:-translate-y-0.5"
           >

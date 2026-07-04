@@ -16,8 +16,8 @@
 ## 핵심 기능 (우선순위 순)
 1. **✅ 완료 — 상황별 준비물 체크리스트** (`/cam-nang/[slug]`)
    진짜 차별화 포인트. "병원 첫 방문", "외국인등록증 갱신" 등 상황을 고르면 필요한 서류와 "왜 필요한지" 이유까지 보여줌. 체크 가능, 진행률 표시.
-2. **⏳ 미구현 — 사진 찍어 서류 해석** (예: 급여명세서, 관공서 우편물)
-   OCR + AI로 항목 하나하나를 베트남어로 해석. "이건 4대보험 공제입니다" 식.
+2. **✅ 완료 — 사진 찍어 서류 해석** (`/quet-giay-to`, 2026-07-04 추가)
+   OCR 없이 Gemini 2.5 Flash(비전)로 사진을 바로 읽고 항목별로 베트남어 해석 생성. 급여명세서, 관공서 우편물, 고지서 등. **이미지는 저장하지 않음**(요청 처리 후 즉시 폐기, DB/파일 저장 없음).
 3. **✅ 완료 — 카카오맵 기반 지도** (`/ban-do`)
    구글맵 대신 카카오맵 JS SDK 사용(한국 내 정확도가 더 높음). 병원/은행/출입국사무소 등 카테고리별 검색. 카카오맵 API가 "비즈 앱 미전환" 상태로 막혀 있어 현재는 map.kakao.com 검색 링크로 폴백 중 — 비즈 앱 전환 후 임베드 지도로 전환 예정.
 4. **✅ 완료 — 카카오/페이스북 소셜 로그인**
@@ -78,13 +78,18 @@ type Situation = {
 - [x] (2026-07-04) 모바일 하단 탭바 `components/BottomNav.tsx` (sm 미만에서만 표시, safe-area 대응, globals.css `.bottom-nav`)
 - [x] (2026-07-04) SEO/메타: `app/sitemap.ts`, `app/robots.ts`, OG 메타(metadataBase), viewport themeColor, `color-scheme: light` 선언
 - [x] (2026-07-04) 랜딩 고도화: 설치 배너, 카테고리별 그룹 목록, 긴급/앱 바로가기 카드, 푸터 내비 링크
+- [x] (2026-07-04) Kakao 로그인 완료(실계정 테스트), Kakao Maps는 비즈 앱 미전환으로 map.kakao.com 링크 폴백 모드
+- [x] (2026-07-04) `/ket-ban` 주변 친구 만들기 기능(opt-in 위치공유, `nearby_friends`/`matched_friends` RPC)
+- [x] (2026-07-04) Facebook 로그인 완료(App ID 996637593372822, 실계정 테스트) — Development 상태라 Admin/Tester만 로그인 가능
+- [x] (2026-07-04) **기능 2 완료** — `/quet-giay-to`: `lib/gemini.ts`(Gemini 2.5 Flash 비전, `responseSchema`로 구조화된 JSON 강제), `app/api/quet-giay-to/route.ts`(이미지 업로드 받아 서버에서만 처리, 저장 없음, 8MB 제한), `components/quetgiayto/QuetGiayToClient.tsx`(촬영/업로드 → 미리보기 → 해석 결과 표시). `GEMINI_API_KEY` 환경변수 필요(aistudio.google.com)
 
 ## 다음 작업 우선순위
-1. **Kakao/Facebook OAuth 프로바이더 활성화 필요** — Kakao Developers / Facebook for Developers에서 앱 생성 후 REST API 키(Kakao)·App ID/Secret(Facebook)을 Supabase 대시보드(Authentication → Providers)에 등록. Redirect URI는 두 프로바이더 모두 `https://wsvxkamvxqrtothpcety.supabase.co/auth/v1/callback`
-2. Supabase 기본 이메일 발송(built-in mailer)은 시간당 발송량이 매우 제한적 — 실사용 전 커스텀 SMTP(Resend/SendGrid 등) 연결 권장
-3. Preview 환경변수는 master 외 브랜치가 생기면 그때 추가 필요 (지금은 Production/Development만 등록됨)
-4. 기능 2(사진 서류 해석) MVP 착수 — MediCerti의 문서 처리 로직 참고 가능
-5. 신사방TV 베트남어 구독자 대상 배포 전, 관공서 서류 정보의 정확성 재검증 필요 (참고용 문구는 이미 footer에 있음, 법적 자문은 아님)
+1. **Kakao 비즈 앱 전환 필요** — 카카오맵 추가기능 신청 위해 사용자 직접 본인인증 필요(대기중). 승인되면 `/ban-do`, `/ket-ban`의 지도가 자동으로 임베드 모드로 전환(코드 수정 불필요)
+2. Facebook 앱이 아직 Development 상태 — 일반 사용자 공개 전 앱 아이콘/개인정보처리방침 URL/카테고리 채우고 앱 검수+게시 전환 필요 (지금은 Admin/Tester 계정만 로그인 가능)
+3. Supabase 기본 이메일 발송(built-in mailer)은 시간당 발송량이 매우 제한적 — 실사용 전 커스텀 SMTP(Resend/SendGrid 등) 연결 권장
+4. Preview 환경변수는 master 외 브랜치가 생기면 그때 추가 필요 (지금은 Production/Development만 등록됨)
+5. `/quet-giay-to`(서류 해석) API는 공개 엔드포인트라 남용 방지(rate limiting)가 없음 — 트래픽 늘면 IP/세션 기준 제한 추가 검토
+6. 신사방TV 베트남어 구독자 대상 배포 전, 관공서 서류 정보의 정확성 재검증 필요 (참고용 문구는 이미 footer에 있음, 법적 자문은 아님)
 
 ## 절대 하지 말 것
 - 실제 API 키/시크릿을 코드나 커밋에 하드코딩하지 말 것 — `.env.local`만 사용

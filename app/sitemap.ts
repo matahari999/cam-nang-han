@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/khan-cap`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/ban-do`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/ket-ban`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE}/quet-giay-to`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/ung-dung`, changeFrequency: "monthly", priority: 0.7 },
     ...checklists.map((s) => ({
       url: `${BASE}/cam-nang/${s.slug}`,

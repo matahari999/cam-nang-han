@@ -15,6 +15,9 @@ export default function SiteFooter() {
           <Link href="/khan-cap" className="underline underline-offset-2">
             Số khẩn cấp
           </Link>
+          <Link href="/quet-giay-to" className="underline underline-offset-2">
+            Giải thích giấy tờ
+          </Link>
           <Link href="/ung-dung" className="underline underline-offset-2">
             Ứng dụng hữu ích
           </Link>
