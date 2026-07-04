@@ -126,6 +126,23 @@ export default function HomePage() {
 
         <section className="py-8 grid gap-3 sm:grid-cols-2">
           <Link
+            href="/ban-do"
+            className="paper-card p-5 flex items-start gap-3 transition-transform hover:-translate-y-0.5"
+          >
+            <span className="text-3xl" aria-hidden>
+              🗺️
+            </span>
+            <span>
+              <span className="block font-bold text-ink">
+                Bản đồ tiện ích quanh bạn
+              </span>
+              <span className="block text-xs text-ink/60 mt-0.5 leading-relaxed">
+                Bệnh viện, nhà thuốc, ngân hàng, văn phòng xuất nhập cảnh... gần
+                bạn nhất, kèm số điện thoại và chỉ đường.
+              </span>
+            </span>
+          </Link>
+          <Link
             href="/khan-cap"
             className="paper-card p-5 flex items-start gap-3 transition-transform hover:-translate-y-0.5"
             style={{
