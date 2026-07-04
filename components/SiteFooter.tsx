@@ -31,6 +31,14 @@ export default function SiteFooter() {
             Kết bạn gần bạn
           </Link>
         </nav>
+        <nav className="mb-4 flex flex-wrap gap-x-5 gap-y-1 text-xs font-medium text-ink/60">
+          <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2">
+            Chính sách bảo mật
+          </Link>
+          <Link href="/dieu-khoan" className="underline underline-offset-2">
+            Điều khoản sử dụng
+          </Link>
+        </nav>
         <p className="text-xs leading-relaxed text-ink/60">
           Thông tin trên trang chỉ mang tính tham khảo, giúp bạn chuẩn bị tốt hơn,
           và không phải là tư vấn pháp lý chính thức. Quy định và thủ tục có thể
