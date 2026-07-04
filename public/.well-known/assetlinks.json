@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.camnanghan.app",
       "sha256_cert_fingerprints": [
-        "91:FC:29:B7:5B:FD:5C:FD:4B:86:9A:77:EA:0F:A9:73:3E:91:2D:A0:CE:EF:C0:5D:ED:2F:D3:E7:1D:29:FE:43"
+        "91:FC:29:B7:5B:FD:5C:FD:4B:86:9A:77:EA:0F:A9:73:3E:91:2D:A0:CE:EF:C0:5D:ED:2F:D3:E7:1D:29:FE:43",
+        "45:06:11:D3:3A:E3:DD:DF:2F:65:C5:95:DC:1F:D5:1B:CD:2D:4D:6D:5E:87:AC:4D:C0:F1:D7:F6:A4:7B:57:75"
       ]
     }
   }
