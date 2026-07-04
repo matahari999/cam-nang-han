@@ -4,7 +4,7 @@
  * - Chú ý: khi thêm slug mới vào lib/checklists.ts, thêm vào PRECACHE_PAGES
  *   và tăng VERSION để người dùng nhận bản mới.
  */
-const VERSION = "v2";
+const VERSION = "v3";
 const PAGE_CACHE = `cnh-pages-${VERSION}`;
 const STATIC_CACHE = `cnh-static-${VERSION}`;
 
@@ -14,6 +14,7 @@ const PRECACHE_PAGES = [
   "/khan-cap",
   "/ung-dung",
   "/ban-do",
+  "/ket-ban",
   "/cam-nang/kham-benh-lan-dau",
   "/cam-nang/gia-han-the-cu-tru",
   "/cam-nang/mo-tai-khoan-ngan-hang",

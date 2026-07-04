@@ -7,8 +7,8 @@ const tabs = [
   { href: "/", label: "Trang chủ", emoji: "🏠" },
   { href: "/cam-nang", label: "Cẩm nang", emoji: "📋" },
   { href: "/ban-do", label: "Bản đồ", emoji: "🗺️" },
+  { href: "/ket-ban", label: "Kết bạn", emoji: "🤝" },
   { href: "/khan-cap", label: "Khẩn cấp", emoji: "🆘" },
-  { href: "/ung-dung", label: "Ứng dụng", emoji: "📱" },
 ];
 
 export default function BottomNav() {

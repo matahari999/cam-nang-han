@@ -163,6 +163,23 @@ export default function HomePage() {
             </span>
           </Link>
           <Link
+            href="/ket-ban"
+            className="paper-card p-5 flex items-start gap-3 transition-transform hover:-translate-y-0.5"
+          >
+            <span className="text-3xl" aria-hidden>
+              🤝
+            </span>
+            <span>
+              <span className="block font-bold text-ink">
+                Kết bạn gần bạn
+              </span>
+              <span className="block text-xs text-ink/60 mt-0.5 leading-relaxed">
+                Kết nối với người Việt gần bạn — bớt cô đơn khi xa nhà, rủ nhau
+                cà phê hay một ly.
+              </span>
+            </span>
+          </Link>
+          <Link
             href="/ung-dung"
             className="paper-card p-5 flex items-start gap-3 transition-transform hover:-translate-y-0.5"
           >

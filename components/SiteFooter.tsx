@@ -18,6 +18,12 @@ export default function SiteFooter() {
           <Link href="/ung-dung" className="underline underline-offset-2">
             Ứng dụng hữu ích
           </Link>
+          <Link href="/ban-do" className="underline underline-offset-2">
+            Bản đồ
+          </Link>
+          <Link href="/ket-ban" className="underline underline-offset-2">
+            Kết bạn gần bạn
+          </Link>
         </nav>
         <p className="text-xs leading-relaxed text-ink/60">
           Thông tin trên trang chỉ mang tính tham khảo, giúp bạn chuẩn bị tốt hơn,

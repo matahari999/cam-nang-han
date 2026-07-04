@@ -25,6 +25,8 @@ const CATEGORIES: Category[] = [
   { id: "tram-y-te", label: "Trạm y tế công (보건소)", keyword: "보건소", emoji: "🩺" },
   { id: "da-van-hoa", label: "TT gia đình đa văn hóa", keyword: "다문화가족지원센터", emoji: "👨‍👩‍👧" },
   { id: "canh-sat", label: "Đồn cảnh sát", keyword: "경찰서", emoji: "🚓" },
+  { id: "quan-ca-phe", label: "Quán cà phê gần đây", keyword: "카페", emoji: "☕" },
+  { id: "quan-nhau", label: "Quán nhậu, quán ăn", keyword: "술집", emoji: "🍻" },
 ];
 
 type Place = {
