@@ -30,6 +30,9 @@ export default function SiteFooter() {
           <Link href="/ket-ban" className="underline underline-offset-2">
             Kết bạn gần bạn
           </Link>
+          <Link href="/thanh-vien" className="underline underline-offset-2">
+            Gói thành viên
+          </Link>
         </nav>
         <nav className="mb-4 flex flex-wrap gap-x-5 gap-y-1 text-xs font-medium text-ink/60">
           <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2">
