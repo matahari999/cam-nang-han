@@ -146,6 +146,23 @@ export default function HomePage() {
             </span>
           </Link>
           <Link
+            href="/phien-dich"
+            className="paper-card p-5 flex items-start gap-3 transition-transform hover:-translate-y-0.5"
+          >
+            <span className="text-3xl" aria-hidden>
+              🗣️
+            </span>
+            <span>
+              <span className="block font-bold text-ink">
+                Phiên dịch Việt–Hàn
+              </span>
+              <span className="block text-xs text-ink/60 mt-0.5 leading-relaxed">
+                Dịch nhanh khi ở bệnh viện, trung tâm hành chính, hoặc nói
+                chuyện với gia đình bên chồng/vợ — có đọc to bằng giọng nói.
+              </span>
+            </span>
+          </Link>
+          <Link
             href="/ban-do"
             className="paper-card p-5 flex items-start gap-3 transition-transform hover:-translate-y-0.5"
           >

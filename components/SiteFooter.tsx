@@ -18,6 +18,9 @@ export default function SiteFooter() {
           <Link href="/quet-giay-to" className="underline underline-offset-2">
             Giải thích giấy tờ
           </Link>
+          <Link href="/phien-dich" className="underline underline-offset-2">
+            Phiên dịch Việt–Hàn
+          </Link>
           <Link href="/ung-dung" className="underline underline-offset-2">
             Ứng dụng hữu ích
           </Link>

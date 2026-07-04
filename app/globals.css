@@ -73,3 +73,71 @@ body {
   box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent),
     0 4px 16px color-mix(in srgb, var(--ink) 5%, transparent);
 }
+
+/* Radar quét quanh vị trí của bạn trên bản đồ Kết bạn */
+.radar-self {
+  position: relative;
+  width: 1px;
+  height: 1px;
+}
+
+.radar-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 100%;
+  background-color: color-mix(in srgb, var(--seal) 55%, transparent);
+  animation: radar-pulse 2.4s ease-out infinite;
+}
+
+.radar-ring:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.radar-ring:nth-child(3) {
+  animation-delay: 1.6s;
+}
+
+.radar-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 100%;
+  background-color: var(--seal);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--seal);
+}
+
+@keyframes radar-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(9);
+    opacity: 0;
+  }
+}
+
+/* Ghim người dùng khác trên bản đồ Kết bạn */
+.person-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+  background-color: var(--navy);
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 2px solid var(--paper);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--ink) 30%, transparent);
+  cursor: pointer;
+}

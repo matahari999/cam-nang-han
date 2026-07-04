@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import NearbyRadarMap from "./NearbyRadarMap";
 
 type NearbyPerson = {
   id: string;
@@ -9,6 +10,8 @@ type NearbyPerson = {
   bio: string | null;
   distance_km: number;
   last_seen: string;
+  fuzzy_lat: number;
+  fuzzy_lng: number;
 };
 
 type MatchedPerson = {
@@ -29,6 +32,7 @@ export default function KetBanClient({ userId }: { userId: string }) {
   const [bio, setBio] = useState("");
   const [bioSaved, setBioSaved] = useState("");
   const [nearby, setNearby] = useState<NearbyPerson[]>([]);
+  const [myPos, setMyPos] = useState<{ lat: number; lng: number } | null>(null);
   const [matched, setMatched] = useState<MatchedPerson[]>([]);
   const [sentTo, setSentTo] = useState<Set<string>>(new Set());
   const [status, setStatus] = useState<
@@ -78,6 +82,7 @@ export default function KetBanClient({ userId }: { userId: string }) {
         setStatus("loading");
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
+        setMyPos({ lat, lng });
 
         await supabase
           .from("profiles")
@@ -227,6 +232,16 @@ export default function KetBanClient({ userId }: { userId: string }) {
 
           {status === "error" && (
             <p className="mb-4 text-sm text-seal">{errorMsg}</p>
+          )}
+
+          {myPos && (
+            <NearbyRadarMap
+              myLat={myPos.lat}
+              myLng={myPos.lng}
+              nearby={nearby}
+              sentTo={sentTo}
+              onSayHi={sayHi}
+            />
           )}
 
           {nearby.length === 0 ? (

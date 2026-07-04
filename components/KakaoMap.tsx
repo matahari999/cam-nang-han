@@ -1,13 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useKakaoMapsSdk } from "@/lib/useKakaoMapsSdk";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-declare global {
-  interface Window {
-    kakao: any;
-  }
-}
 
 type Category = {
   id: string;
@@ -39,58 +35,17 @@ type Place = {
   distance: string;
 };
 
-const SDK_TIMEOUT_MS = 8000;
-
 export default function KakaoMap() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapObj = useRef<any>(null);
   const markers = useRef<any[]>([]);
   const infoWindow = useRef<any>(null);
 
-  const [status, setStatus] = useState<"loading" | "ready" | "failed">("loading");
+  const status = useKakaoMapsSdk();
   const [active, setActive] = useState<Category | null>(null);
   const [places, setPlaces] = useState<Place[]>([]);
   const [searching, setSearching] = useState(false);
   const [locationNote, setLocationNote] = useState<string | null>(null);
-
-  // Tải SDK Kakao Maps
-  useEffect(() => {
-    const key = process.env.NEXT_PUBLIC_KAKAO_JS_KEY;
-    if (!key) {
-      setStatus("failed");
-      return;
-    }
-    if (window.kakao?.maps) {
-      setStatus("ready");
-      return;
-    }
-
-    let cancelled = false;
-    const timeout = setTimeout(() => {
-      if (!cancelled) setStatus("failed");
-    }, SDK_TIMEOUT_MS);
-
-    const script = document.createElement("script");
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${key}&libraries=services&autoload=false`;
-    script.async = true;
-    script.onload = () => {
-      if (cancelled) return;
-      window.kakao.maps.load(() => {
-        clearTimeout(timeout);
-        if (!cancelled) setStatus("ready");
-      });
-    };
-    script.onerror = () => {
-      clearTimeout(timeout);
-      if (!cancelled) setStatus("failed");
-    };
-    document.head.appendChild(script);
-
-    return () => {
-      cancelled = true;
-      clearTimeout(timeout);
-    };
-  }, []);
 
   // Khởi tạo bản đồ khi SDK sẵn sàng
   useEffect(() => {

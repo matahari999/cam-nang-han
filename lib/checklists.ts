@@ -431,8 +431,17 @@ export const checklists: Situation[] = [
         label: "Gọi 1350 (Bộ Lao động) hoặc trung tâm hỗ trợ lao động nước ngoài (외국인노동자지원센터)",
         why: "Tư vấn miễn phí bằng tiếng Việt về cách viết đơn, chuẩn bị bằng chứng, và các chế độ như tiền lương thay thế (대지급금) khi công ty phá sản.",
       },
+      {
+        label:
+          "Các bước nộp đơn online tại minwon.moel.go.kr: đăng ký/đăng nhập → chọn '임금체불 진정신고' → nhập thông tin công ty, thời gian làm việc, số tiền bị nợ → đính kèm bằng chứng → nộp",
+        why: "Sau khi nộp, cơ quan lao động sẽ triệu tập chủ trong khoảng 25 ngày để hòa giải. Nếu chủ không trả, vụ việc chuyển sang xử lý hình sự và bạn có thể kiện dân sự đòi tiền riêng.",
+      },
+      {
+        label: "Giữ lại bản sao mọi giấy tờ đã nộp và số biên nhận đơn khiếu nại",
+        why: "Nếu cần theo dõi tiến độ hoặc khiếu nại tiếp, bạn phải tự có bằng chứng đã nộp đơn — cơ quan không luôn nhắc lại cho bạn.",
+      },
     ],
-    tip: "Tiền lương của bạn được pháp luật Hàn Quốc bảo vệ. Đừng im lặng chịu thiệt vì sợ tiếng Hàn kém — các trung tâm hỗ trợ có phiên dịch tiếng Việt và đã xử lý hàng nghìn vụ tương tự.",
+    tip: "Tiền lương của bạn được pháp luật Hàn Quốc bảo vệ. Đừng im lặng chịu thiệt vì sợ tiếng Hàn kém — các trung tâm hỗ trợ có phiên dịch tiếng Việt và đã xử lý hàng nghìn vụ tương tự. Từ 2026, chủ bị kết luận nợ lương còn bị cấm tuyển lao động nước ngoài trong 3 năm — báo cáo của bạn cũng giúp bảo vệ những người lao động đến sau.",
   },
   {
     slug: "tai-nan-lao-dong",
@@ -442,6 +451,10 @@ export const checklists: Situation[] = [
     emoji: "🩹",
     category: "cong-viec",
     items: [
+      {
+        label: "Nguy hiểm tính mạng: gọi 119 ngay lập tức, đừng chờ hỏi ý kiến chủ",
+        why: "119 là cấp cứu — luôn ưu tiên trước mọi thủ tục giấy tờ. Bạn có quyền dừng làm việc nếu thấy nguy hiểm tính mạng (작업중지권), kể cả khi chủ không đồng ý.",
+      },
       {
         label: "Điều trị ngay và giữ toàn bộ hồ sơ y tế (진단서, hóa đơn viện phí)",
         why: "Sức khỏe trước tiên. Giấy chẩn đoán của bác sĩ ghi rõ thương tích và thời gian điều trị là căn cứ chính để xét bồi thường.",
@@ -463,7 +476,7 @@ export const checklists: Situation[] = [
         why: "Nhiều chủ đề nghị 'thỏa thuận riêng' (공상처리) để không báo bảo hiểm. Nhận tiền riêng có thể khiến bạn mất quyền điều trị dài hạn và bồi thường di chứng về sau.",
       },
     ],
-    tip: "Bảo hiểm tai nạn lao động áp dụng cho hầu hết người lao động tại Hàn, kể cả người làm việc không đúng tư cách lưu trú. Đừng vì lo visa mà bỏ quyền được điều trị và bồi thường.",
+    tip: "Bảo hiểm tai nạn lao động áp dụng cho hầu hết người lao động tại Hàn, kể cả người làm việc không đúng tư cách lưu trú. Đừng vì lo visa mà bỏ quyền được điều trị và bồi thường. Đã có nhiều vụ tai nạn nghiêm trọng do nơi làm việc lơ là an toàn — nếu thấy môi trường làm việc nguy hiểm (thiếu thiết bị bảo hộ, không huấn luyện an toàn), bạn có quyền phản ánh với 고용노동부 mà không cần chờ tai nạn xảy ra.",
   },
   {
     slug: "chuan-bi-ve-nuoc",

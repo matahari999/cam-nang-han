@@ -2,6 +2,14 @@ import { GoogleGenAI, Type } from "@google/genai";
 
 const MODEL = "gemini-2.5-flash";
 
+function getClient(): GoogleGenAI {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    throw new Error("MISSING_API_KEY");
+  }
+  return new GoogleGenAI({ apiKey });
+}
+
 export type DocumentInterpretation = {
   docType: string;
   summary: string;
@@ -63,12 +71,7 @@ export async function interpretDocumentImage(
   imageBase64: string,
   mimeType: string
 ): Promise<DocumentInterpretation> {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    throw new Error("MISSING_API_KEY");
-  }
-
-  const ai = new GoogleGenAI({ apiKey });
+  const ai = getClient();
 
   const result = await ai.models.generateContent({
     model: MODEL,
@@ -93,4 +96,37 @@ export async function interpretDocumentImage(
   }
 
   return JSON.parse(text) as DocumentInterpretation;
+}
+
+export type TranslateDirection = "vi-ko" | "ko-vi";
+
+export async function translateText(
+  text: string,
+  direction: TranslateDirection
+): Promise<string> {
+  const ai = getClient();
+
+  const targetLang = direction === "vi-ko" ? "tiếng Hàn" : "tiếng Việt";
+  const sourceLang = direction === "vi-ko" ? "tiếng Việt" : "tiếng Hàn";
+
+  const result = await ai.models.generateContent({
+    model: MODEL,
+    contents: [
+      {
+        role: "user",
+        parts: [
+          {
+            text: `Dịch đoạn văn bản sau từ ${sourceLang} sang ${targetLang}. Đây là câu nói dùng trong đời sống hàng ngày (ở bệnh viện, trung tâm hành chính, nói chuyện với gia đình), vì vậy hãy dịch tự nhiên, dễ hiểu, đúng văn hóa giao tiếp, không dịch từng từ máy móc. Chỉ trả về đúng phần đã dịch, không thêm giải thích hay ghi chú nào khác.\n\nVăn bản cần dịch:\n${text}`,
+          },
+        ],
+      },
+    ],
+  });
+
+  const translated = result.text;
+  if (!translated) {
+    throw new Error("EMPTY_RESPONSE");
+  }
+
+  return translated.trim();
 }
